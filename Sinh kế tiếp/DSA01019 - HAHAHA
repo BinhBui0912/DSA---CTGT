@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+string s;
+
+void sinh(int n){
+	for(int i = 1; i <= n; i++) s[i] = 'A';
+	while(1){
+		int check = 0;
+		if(s[1] == 'A') check++;
+		if(s[n] == 'H') check++;
+		for(int i = 1; i < n; i++){
+			if(s[i] == 'H' && s[i+1] == 'H') check++;
+		}
+		if(check == 0){
+			for(int i = 1; i <= n; i++) cout << s[i];
+			cout << endl;
+		}
+		int i = n;
+		while(i >= 1 && s[i] == 'H'){
+			s[i] = 'A';
+			i--;
+		}
+		if(i == 0) break;
+		else{
+			s[i] = 'H';
+		}
+	}
+	
+}
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		int n; cin >> n;
+		sinh(n);
+	}
+	return 0;
+}
