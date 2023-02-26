@@ -14,3 +14,18 @@ long long phi_euler(ll n){
 	if(n > 1) res = res - res/n;
 	return res;
 }
+
+// sàng euler trong 1 đoạn số
+long long phi_euler2(){
+	int phi[1000001];
+	for(int i = 1; i <= 1000000; i++){
+		phi[i] = i;
+	}
+	for(int i = 2; i <= 1000000; i++){
+		if(phi[i] == i){
+			for(int j = i * 2; j <= 1000000; j+=i){
+				phi[j] = phi[j] - phi[j] / i;
+			}
+		}
+	}
+}
