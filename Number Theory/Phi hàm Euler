@@ -1,4 +1,5 @@
 // Đếm số lượng các số nguyên tố cùng nhau với n không vượt quá n
+// u(n) = n * (1 - 1/i1) *...(các i là ước nguyên tố của n)
 
 long long phi_euler(ll n){
 	ll res = n;
