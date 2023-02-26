@@ -1,0 +1,26 @@
+// Số hoàn hảo là các số có tổng các ước (trừ chính nó) bằng chính nó
+/* thuật toán : nếu p là số nguyên tố và 2^p - 1 là số nguyên tố
+ thì (2^p - 1) * (2^(p-1)) cũng là số nguyên tố
+*/
+
+
+bool nt(int n){
+	for(int i = 2; i <= sqrt(n); i++){
+		if(n % i == 0) return false;
+	}
+	return n > 1;
+}
+
+// Dùng mảng hh[100] để lưu các số hoàn hảo lại
+
+void init(){
+	for(int p = 2; p <= 32; p++){
+		if(nt(p)){
+			int tmp = (int)pow(2, p) - 1;
+			if(nt(tmp)){
+				hh[cnt] = 1ll * (int)pow(2, p - 1) * tmp;
+				cnt++;
+			}
+		}
+	}
+}
