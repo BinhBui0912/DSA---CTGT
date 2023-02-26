@@ -1,0 +1,10 @@
+// Tính bậc của 1 thừa số nguyên tố trong 1 giai thừa
+// ví dụ : 6! = 3.2.5.4.3.2.1 --> bậc của 3 là : 2
+
+int degree(int n, int k){
+	int res = 0;
+	for(int i = k; i <= n; i*=k){
+		res = res + n/i;
+	}
+	return res;
+}
