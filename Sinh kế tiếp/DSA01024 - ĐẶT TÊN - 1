@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+set<string> s;	
+vector<string> v;
+
+void init1(int n, int k){	
+	cin >> n >> k;
+	string tmp;
+	for(int i = 1; i <= n; i++){
+		cin >> tmp;
+		s.insert(tmp);
+	}
+	for(auto x : s){
+		v.push_back(x);
+	}
+	int l = v.size();
+	int a[1000];
+	for(int i = 1; i <= k; i++) a[i] = i;
+	while(1){
+		for(int i = 1; i <= k; i++) cout << v[a[i]-1] << " ";
+		cout << endl;
+		int i = k;
+		while(i >= 0 && a[i] == l-k+i){
+			i--;
+		}
+		if(i == 0) break;
+		else{
+			a[i]++;
+			for(int j = i+1; j <= k; j++) a[j] = a[j-1] + 1;		
+		}	
+	}
+}
+
+int main(){
+	int n, k;
+	init1(n,k);
+}
