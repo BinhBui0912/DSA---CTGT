@@ -19,9 +19,11 @@ void extended_gcd(int a, int b){
 		y = 0; 
 		g = a;
 	}
-	extended_gcd(b, a % b);
-	// x1 = x; y1 = y;
-	int tmp = x;
-	x = y;
-	y = tmp - a / b * y;
+	else{
+		extended_gcd(b, a % b);
+		// x1 = x; y1 = y;
+		int tmp = x;
+		x = y;
+		y = tmp - a / b * y;
+	} 
 }
