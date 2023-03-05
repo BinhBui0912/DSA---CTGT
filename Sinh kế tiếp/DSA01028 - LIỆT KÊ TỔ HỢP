@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+set<int> s;
+vector<int> v;
+int a[10001];
+
+void init1(int n, int k){
+	while(n--){
+		int x; cin >> x;
+		s.insert(x);
+	}
+	for(auto i : s){
+		v.push_back(i);
+	}
+}
+
+void init2(int n, int k){
+	int l = v.size();
+	for(int i = 1; i <= k; i++)
+		a[i] = i;
+	while(1){
+		for(int i = 1; i <= k; i++)
+			cout << v[a[i] - 1] << " ";
+		cout << endl;
+		int i = k;
+		while(i >= 1 && a[i] == l-k+i)
+			i--;
+		if(i == 0) break;
+		else{
+			a[i]++;
+			for(int j = i + 1; j <= k; j++)
+				a[j] = a[j - 1] + 1;
+		}
+	}
+}
+
+int main(){
+	int n, k;
+	cin >> n >> k;
+	init1(n, k);
+	init2(n, k);
+	return 0;
+}
