@@ -1,6 +1,6 @@
 /*  tìm x,y của pt:  a.x + b.y = gcd(a,b)
                   <=> b.x1 + b%a.y1 = gcd(b,a%b) = gcd(a,b)
-                  x = x1;   y = x - [a/b]*y1;
+                  x = y1;   y = x1 - [a/b]*y1;
 */                 
 
 using ll = long long;
