@@ -33,3 +33,5 @@ int modular_inverse(int a, int m){
 	extended_gcd(a, m);
 	return (x % m + m) % m;
 }
+
+// A^-1 = A^(m-2) % m   với m là số nguyên tố
