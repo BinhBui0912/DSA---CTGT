@@ -27,3 +27,9 @@ void extended_gcd(int a, int b){
 		y = tmp - a / b * y;
 	} 
 }
+
+// Tìm nghịch đảo modular của a : (a . a^-1) % m = 1
+int modular_inverse(int a, int m){
+	extended_gcd(a, m);
+	return (x % m + m) % m;
+}
