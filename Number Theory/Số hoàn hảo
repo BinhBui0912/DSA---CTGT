@@ -1,6 +1,6 @@
 // Số hoàn hảo là các số có tổng các ước (trừ chính nó) bằng chính nó
 /* thuật toán : nếu p là số nguyên tố và 2^p - 1 là số nguyên tố
- thì (2^p - 1) * (2^(p-1)) cũng là số nguyên tố và là số hoàn hảo
+ thì (2^p - 1) * (2^(p-1)) là số hoàn hảo
 */
 
 
