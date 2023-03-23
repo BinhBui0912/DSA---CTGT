@@ -1,0 +1,29 @@
+Thuật toán Gray -> Nhị phân:
+- bit đầu tiên của mã gray và nhị phân là giống nhau
+- Các bit thứ i còn lại của xâu nhị phân có được bằng cách: Kiểm tra kí tự thứ i của mã gray:
+  + Nếu bit thứ i của mã gray là 0 thi bit thứ i của mã nhị phân sẽ copy bit thứ i-1 của mã nhị phân
+  + Ngược lại, thì bit thứ i của mã nhị phân sẽ là lất của bit thứ i-1 của mã nhị phân
+ 
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		string res = "";
+		res += s[0];
+		for(int i = 1; i < s.size(); i++){
+			if(s[i] == '1'){
+				if(res[i - 1] == '0') res += "1";
+				else res += "0";
+			} 
+			else res += res[i - 1];
+		}
+		cout << res << endl;
+	}
+}
