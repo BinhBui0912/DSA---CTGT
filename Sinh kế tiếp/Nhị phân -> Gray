@@ -1,0 +1,23 @@
+Thuật toán nhị phân -> gray:
+- bit đầu tiên của mã gray và mã nhị phân là giống nhau
+- Các bit còn lại ở vị trí i của mã gray là XOR bit thứ i và i-1 của xâu nhị 
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		cout << s[0];
+		for(int i = 1; i < s.size(); i++){
+			if(s[i] == s[i - 1]) cout << 0;
+			else cout << 1;
+		}
+		cout << endl;
+	}
+}
