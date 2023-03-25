@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, X[100], k, daxet[100], l; 
+set<string> s;
+vector<string> v;
+
+void init(){
+	string tmp;
+	while(n--){
+		cin >> tmp;
+		s.insert(tmp);
+	}
+	for(string x : s){
+		v.push_back(x);
+	}
+	l = v.size();
+}
+
+void in(){
+	for(int i = 1; i <= k; i++){
+		cout << v[X[i] - 1] << " ";
+	}
+} 
+
+void Try(int i){
+	for(int j = X[i - 1] + 1; j <= l - k + i; j++){
+		X[i] = j;
+		if(i == k){
+			in();
+			cout << endl;
+		}
+		else Try(i + 1);
+	} 
+}
+
+int main(){
+	cin >> n >> k;
+	init();
+	Try(1);
+}
