@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int X[100];
+int n;
+
+void in(){
+	string res = "";
+	res += to_string(X[1]);
+	for(int i = 2; i <= n; i++){
+		if(X[i] == X[i - 1]) res += "0";
+		else res += "1";
+	}
+	cout << res;
+}
+
+void Try(int i){
+	for(int j = 0; j <= 1; j++){
+		X[i] = j;
+		if(i == n){
+			in();
+			cout << " ";
+		}
+		else Try(i + 1);
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cin >> n;
+		Try(1);
+		cout << endl;
+	}
+} 
