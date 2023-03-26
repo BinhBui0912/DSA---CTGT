@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int a[1000], n, k;
+
+void check(){
+	vector<int> v;
+	int dem = 0;
+	for(int i = 0; i < k; i++){
+		v.push_back(a[i]);
+	}
+	int i = k-1;
+	while(i >= 0 && a[i] == n-k+i+1){
+		i--;
+	}
+	if(i >= 0){
+		a[i]++;
+		for(int j = i+1; j < k; j++) a[j] = a[j-1]+1;
+	}
+	else{
+		dem = k;
+	}
+	for(int i = 0; i < k; i++){
+		if(find(v.begin(), v.end(), a[i]) == v.end()) dem++; 
+	}
+	cout << dem;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cin >> n >> k;
+		for(int i = 0; i < k; i++) cin >> a[i];
+		check();
+		cout << endl;
+	}
+}
