@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, ok, cnt, a[100];
+
+void ktao(){
+	cnt = 1;
+	a[1] = n;
+} 
+
+void next(){
+	int i = cnt;
+	while(i >= 1 && a[i] == 1){
+		i--;
+	}
+	if(i == 0){
+		ok = 0;
+	}
+	else{
+		a[i]--;
+		int thieu = cnt - i + 1;
+		int x = thieu / a[i];
+		int y = thieu % a[i];
+		cnt = i;
+		for(int j = 1; j <= x; j++){
+			a[cnt + 1] = a[i];
+			cnt++;
+		}
+		if(y){
+			a[cnt + 1] = y;
+			cnt++;
+		}
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cin >> n;
+		ok = 1;
+		ktao();
+		while(ok){
+			cout << "("; 
+			for(int i = 1; i <= cnt; i++){
+				cout << a[i];
+				if(i != cnt) cout << " ";
+				else cout << ") ";
+			}
+			next();
+		}
+		cout << endl;
+	}
+}
