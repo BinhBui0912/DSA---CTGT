@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, a[1000];
+
+void in(){
+	int sum = 0;
+	for(int i = 0; i < n; i++) sum += a[i];
+	if(sum % 2 == 1){
+		cout << "NO" << endl;
+		return;
+	}
+	bool check[sum / 2 + 1];
+	memset(check, false, sizeof(check));
+	for(int i = 0; i < n; i++){
+		for(int j = sum / 2; j >= a[i]; j--){
+			if(check[j - a[i]] == 1 || j == a[i]){
+				check[j] = true;
+			}
+		}
+	}
+	if(check[sum / 2]) cout << "YES" << endl;
+	else cout << "NO" << endl;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cin >> n;
+		for(int i = 0; i < n; i++) cin >> a[i];
+		in();
+	}
+}
