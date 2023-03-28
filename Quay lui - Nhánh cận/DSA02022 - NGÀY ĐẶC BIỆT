@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, m, a[1000][1000], ans = 0;
+
+int main(){
+	vector<string> day = {"02", "20", "22"};
+	vector<string> month = {"02"};
+	vector<string> year = {"2000", "2002", "2020", "2022", "2200", "2202", "2220", "2222"};
+	for(int i = 0; i < day.size(); i++){
+		for(int j = 0; j < month.size(); j++){
+			for(int k = 0; k < year.size(); k++){
+				cout << day[i] << "/" << month[j] << "/" << year[k] << endl;
+			}
+		}
+	}
+}
