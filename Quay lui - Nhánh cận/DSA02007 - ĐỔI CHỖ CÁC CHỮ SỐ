@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int K;
+string s;
+
+void inp(){
+	cin >> K >> s;
+}
+
+void it(){
+	for(int i = 0; i < s.size(); i++){
+		if(K == 0) break;
+		int pos = s.size() - 1;
+		char c = s[s.size() - 1];
+		for(int j = i + 1; j < s.size(); j++){
+			if(s[j] >= c){
+				c = s[j];
+				pos = j;
+			}
+		}
+		if(s[i] < c){
+			swap(s[i], s[pos]);
+			K--;
+		}
+	}
+	cout << s << endl;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		it();
+	}
+}
