@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, s, ok; 
+int X[100], a[100];
+
+void inp(){
+	cin >> n;
+	for(int i = 1; i <= n; i++) a[i] = i;
+}
+
+bool check(){
+	for(int i = 1; i < n; i++){
+		if(abs(a[i + 1] - a[i]) == 1) return false;
+	}
+	return true;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		ok = 0;
+		do{
+			if(check()){
+				ok = 1;
+				for(int i = 1; i <= n; i++) cout << a[i];
+				cout << endl;
+			}
+		}while(next_permutation(a + 1, a + n + 1));
+	}
+}
