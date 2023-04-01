@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, X[1000], c[100][100], res = 0;
+int toiuu = 1e9 + 7;
+int cmin = 1e9 + 7;
+bool daxet[100];
+
+void inp(){
+	memset(daxet, false, sizeof(daxet));
+	cin >> n;
+	for(int i = 1; i <= n; i++){
+		for(int j = 1; j <= n; j++){
+			cin >> c[i][j];
+			if(c[i][j]){
+				cmin = min(cmin, c[i][j]);
+			}
+		}
+	}
+}
+
+void Try(int i){
+	for(int j = 2; j <= n; j++){
+		if(!daxet[j]){
+			daxet[j] = true;
+			X[i] = j;
+			res += c[X[i]][X[i - 1]];
+			if(i == n){
+				toiuu = min(toiuu, res + c[X[n]][1]);
+			}
+			else if(res + cmin * (n - i + 1) < toiuu){
+				Try(i + 1);
+			}
+			daxet[j] = false;
+			res -= c[X[i]][X[i - 1]];
+		}
+	}
+}
+
+
+int main(){
+	inp();
+	X[1] = 1;
+	Try(2);
+	cout << toiuu << endl;
+}
