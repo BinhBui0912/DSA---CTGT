@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, X[1000], s, k, a[1000]; 
+int ok;
+
+void Try(int i){
+	if(ok){
+		return;
+	}
+	for(int j = X[i - 1] + 1; j <= n - k + i; j++){
+		X[i] = j;
+		if(i == k){
+			int sum = 0;
+			for(int j = 1; j <= k; j++){
+				sum += a[X[j]];
+			}
+			if(sum == s){
+				ok = true;
+			}
+		}
+		else Try(i + 1);
+	}
+} 
+
+void inp(){
+	cin >> n >> s;
+	for(int i = 1; i <= n; i++) cin >> a[i];
+	sort(a + 1, a + n + 1, greater<int>());
+	ok = false;
+	for(int i = 1; i <= n; i++){
+		k = i;
+		Try(1);
+		if(ok){
+			cout << i << endl;
+			return;
+		}
+	}
+	cout << -1 << endl;
+}
+
+int main(){
+	inp();
+}
