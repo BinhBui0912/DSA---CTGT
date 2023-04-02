@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int n, X[100], a[1000], s;
+int sum;
+vector<vector<int>> v;
+
+void Try(int i, int sum, int pos){
+	if(sum == s){
+		vector<int> tmp(X, X + i);
+		v.push_back(tmp);
+	}
+	for(int j = pos; j < n; j++){
+		if(sum + a[j] <= s){
+			X[i] = a[j];
+			Try(i + 1, sum + a[j], j);
+		}
+	}
+}
+
+void inp(){
+	v.clear();
+	cin >> n >> s;
+	for(int i = 0; i < n; i++) cin >> a[i];
+	sort(a, a + n);
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		Try(0, 0, 0);
+		if(!v.size()){
+			cout << -1 << endl;
+		}
+		else{
+			cout << v.size() << " ";
+			for(auto x : v){
+				cout << "{";
+				for(int i = 0; i < x.size(); i++){
+					cout << x[i];
+					if(i != x.size() - 1) cout << " ";
+					else cout << "} ";
+				}
+			}
+		}
+		cout << endl;
+	}
+}
