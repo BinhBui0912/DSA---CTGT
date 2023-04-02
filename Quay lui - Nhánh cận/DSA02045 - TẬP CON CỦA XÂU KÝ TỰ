@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int n, X[100];
+string s, ans;
+
+void Try(int i, int pos){
+	for(int j = pos; j < n; j++){
+		ans += s[j];
+		cout << ans << " ";
+		Try(i + 1, j + 1);
+		ans.pop_back();
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		ans = "";
+		cin >> n >> s;
+		sort(s.begin(), s.end());
+		Try(0, 0);
+		cout << endl;
+	}
+}
