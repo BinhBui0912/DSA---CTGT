@@ -1,0 +1,7 @@
+- lower_bound(iterator 1, iterator 2, x): Trả vị trí con trỏ (iterator) của phần tử đầu tiên trong mảng
+>= x, trong mảng không có phần tử nào: trả về iterator 2.
+
+auto it = lower_bound(iterator 1, iterator 2, x):
+- in ra phần tử tìm được: cout << *it;
+- in ra vị trí phần tử: cout << it - a.begin();
+                        cout << distance(a.begin(), it);  // hàm trả về khoảng cách 2 iterator;
