@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int n, k, a[1001], check;
+
+void inp(){
+	cin >> n >> k;
+	for(int i = 1; i <= k; i++) cin >> a[i];
+}
+
+void prev(){
+	check = true;
+	for(int i = k; i >= 1; i--){
+		if(a[i] != a[i - 1] + 1){
+			a[i]--;
+			check = false;
+			if(a[k] != n){
+				for(int j = i + 1; j <= k; j++) a[j]++;
+			}
+			break;
+		}
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		prev();
+		if(check && a[1] == 1){
+			for(int i = 1; i <= k; i++) cout << n - k + i << " ";
+		}
+		else{
+			for(int i = 1; i <= k; i++) cout << a[i] << " ";
+		}
+		cout << endl;
+	}
+}
