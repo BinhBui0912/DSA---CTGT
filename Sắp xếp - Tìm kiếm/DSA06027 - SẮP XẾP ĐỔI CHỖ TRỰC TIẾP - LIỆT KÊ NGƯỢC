@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+vector<vector<int>> v;
+
+void sapxepnguoc(int a[], int n){
+	for(int i = 0; i < n - 1; i++){
+		for(int j = i + 1; j < n; j++){
+			if(a[j] <= a[i]){
+				swap(a[j], a[i]);
+			}
+		}
+		vector<int> tmp(a, a + n);
+		v.push_back(tmp);
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		v.clear();
+		int n; cin >> n;
+		int a[n];
+		for(int i = 0; i < n; i++) cin >> a[i];
+		sapxepnguoc(a, n);
+		for(int i = n - 2; i >= 0; i--){
+			cout << "Buoc " << i + 1 << ": ";
+			for(auto x : v[i]){
+				cout << x << " ";
+			}
+			cout << endl;
+		}	
+	}
+}
