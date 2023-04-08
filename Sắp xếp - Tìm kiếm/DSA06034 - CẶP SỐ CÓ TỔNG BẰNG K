@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		ll n, k; cin >> n >> k;
+		ll a[n];
+		for(ll &i : a) cin >> i; 
+		ll res = 0;
+		sort(a, a + n); 
+		for(int i = 0; i < n - 1; i++){
+			auto it1 = lower_bound(a + i + 1, a + n, k - a[i]);
+			auto it2 = upper_bound(a + i + 1, a + n, k- a[i]);	
+			if(*it1 == k - a[i]){
+				res += it2 - it1;
+			}
+		}
+		cout << res << endl;
+	}
+}
