@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		int n; cin >> n;
+		string s;
+		cin.ignore();
+		getline(cin, s);
+		set<char> b;
+		for(char x : s){
+			if(x != ' ') b.insert(x);
+		}
+		for(char x : b){
+			cout << x << " ";
+		}
+		cout << endl;
+	}
+}
