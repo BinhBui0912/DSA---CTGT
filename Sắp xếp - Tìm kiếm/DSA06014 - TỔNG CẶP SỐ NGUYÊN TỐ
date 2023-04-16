@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+const int maxn = 1000000;
+bool nt[maxn];
+
+void sang(){
+	memset(nt, true, sizeof(nt));
+	nt[0] = nt[1] = false;
+	for(int i = 2; i <= sqrt(maxn); i++){
+		if(nt[i]){
+			for(int j = i * i; j <= maxn; j += i){
+				nt[j] = false;
+			}
+		}
+	}
+}
+
+
+int main(){
+	int t; cin >> t;
+	sang();
+	while(t--){
+		int n; cin >> n;
+		int ok = 0;
+		for(int i = 2; i <= n / 2; i++){
+			if(nt[i] && nt[n - i]){
+				ok = 1;
+				cout << i << " " << n - i << endl;
+				break;
+			}
+		}
+		if(!ok) cout << -1 << endl;
+	}
+}
