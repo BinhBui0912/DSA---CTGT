@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int binsearch(ll a[], int l, int r, int x){
+	int res = -1;
+	while(l <= r){
+		int m = (l + r) / 2;
+		if(a[m] == x){
+			res = m;
+			break;
+		}
+		else if(a[m] > x){
+			r = m - 1;
+		}
+		else{
+			l = m + 1;
+		}
+	}
+	return res;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		int n; cin >> n;
+		ll a[n];
+		for(int i = 0; i < n; i++) cin >> a[i];
+		sort(a, a + n);
+		int ok = 0;
+		for(int i = 0; i < n - 1; i++){
+			for(int j = i + 1; j < n ; j++){
+				ll x = a[i] * a[i] + a[j] * a[j];
+				ll cnt = sqrt(x);
+				if(cnt * cnt == x && binsearch(a, j + 1, n - 1, cnt) != -1){
+					ok = 1;
+					break;
+				}
+			}
+			if(ok) break;
+		}
+		if(ok) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+}
