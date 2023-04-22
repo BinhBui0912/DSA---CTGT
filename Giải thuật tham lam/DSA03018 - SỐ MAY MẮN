@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		int n; cin >> n;
+		int ok = 0;
+		for(int b = n / 7; b >= 0; b--){
+			int cnt = n - b * 7;
+			if(cnt % 4 == 0){
+				int a = cnt / 4;
+				ok = 1;
+				cout << string(a, '4');
+				cout << string(b, '7');
+				cout << endl;
+				break;
+			}
+		}
+		if(!ok) cout << -1 << endl;
+	}
+}
