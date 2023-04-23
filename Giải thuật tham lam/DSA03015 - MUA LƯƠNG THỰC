@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+const int mod = 1000000007;
+
+int inp(){
+	int n, s, m; 
+	cin >> n >> s >> m;
+	ll lt = s * m;
+	int day = s - s / 7;
+	if(lt > day * n) return -1;
+	for(int i = 1; i <= day; i++){
+		if(lt <= n * i) return i;
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cout << inp() << endl;
+	}
+}
