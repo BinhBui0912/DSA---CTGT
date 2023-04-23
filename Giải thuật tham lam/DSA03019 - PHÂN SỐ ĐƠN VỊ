@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+const int mod = 1000000007;
+
+void Try(ll tu, ll mau){
+	if(mau % tu == 0){
+		cout << 1 << "/" << mau / tu << endl;
+		return;
+	}
+	ll x = mau / tu + 1;
+	cout << 1 << "/" << x << " + ";
+	ll tumoi = tu * x - mau;
+	ll maumoi = mau * x;
+	Try(tumoi, maumoi);
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		ll p, q;
+		cin >> p >> q;
+		Try(p, q);
+	}
+}
