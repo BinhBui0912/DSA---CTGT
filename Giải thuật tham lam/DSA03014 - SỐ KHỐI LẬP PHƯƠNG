@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+const int mod = 1000000007;
+ll res;
+int x[100], n;
+string s;
+
+bool check(ll n){
+	ll x = cbrt(n) + 0.5;
+	return x * x * x == n;
+}
+
+void Try(int i){
+	for(int j = 0; j <= 1; j++){
+		x[i] = j;
+		if(i == n - 1){
+			ll tmp = 0;
+			for(int i = 0; i < n; i++){
+				if(x[i]){
+					tmp = tmp * 10 + (s[i] - '0');
+				}
+			}
+			if(check(tmp)){
+				res = max(res, tmp);
+			}
+		}
+		else Try(i + 1);
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cin >> s;
+		n = s.size();
+		res = 0;
+		Try(0);
+		if(res == 0) cout << -1 << endl;
+		else cout << res << endl;
+	}
+}
