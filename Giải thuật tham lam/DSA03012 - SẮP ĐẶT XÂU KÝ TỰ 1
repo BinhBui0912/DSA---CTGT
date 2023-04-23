@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+const int mod = 1000000007;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		map<char, int> m;
+		for(char x : s){
+			m[x]++;
+		}
+		int max_char = 0;
+		for(auto it : m){
+			max_char = max(max_char, it.second);
+		}
+		int cnt = s.size() - max_char;
+		if(cnt >= max_char - 1) cout << 1 << endl;
+		else cout << -1 << endl;
+	}
+}
