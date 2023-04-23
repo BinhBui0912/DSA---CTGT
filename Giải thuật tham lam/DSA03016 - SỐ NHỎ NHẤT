@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+const int mod = 1000000007;
+
+void inp(){
+	int s, d;
+	cin >> s >> d;
+	if(s > d * 9){
+		cout << -1 << endl;
+		return;
+	}
+	int solve[d];
+	s--;
+	for(int i = d - 1; i >= 1; i--){
+		if(s >= 9){
+			solve[i] = 9;
+			s -= 9;
+		}
+		else{
+			solve[i] = s;
+			s = 0;
+		}
+	}
+	solve[0] = s + 1;
+	for(auto x : solve){
+		cout << x;
+	}
+	cout << endl;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+	}
+}
