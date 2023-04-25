@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+
+int main(){
+	int n; cin >> n;
+	int a[n + 1], b[n + 1];
+	for(int i = 1; i <= n; i++) cin >> a[i];
+	for(int i = 1; i <= n; i++){
+		b[a[i]] = i;
+	}
+	int cnt = 1, res = 0;
+	for(int i = 1; i < n; i++){
+		if(b[i + 1] > b[i]){
+			cnt++;
+			res = max(res, cnt);
+		}
+		else{
+			cnt = 1;
+		}
+	}
+	cout << n - res << endl;
+}
