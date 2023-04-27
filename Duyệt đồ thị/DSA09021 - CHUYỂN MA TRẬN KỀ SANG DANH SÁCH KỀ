@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int a[1005][1005];
+vector<int> ke[1001];
+
+int main(){
+	int n; cin >> n;
+	for(int i = 1; i <= n; i++){
+		for(int j = 1; j <= n; j++){
+			cin >> a[i][j];
+		}
+	}
+	for(int i = 1; i <= n; i++){
+		for(int j = 1; j <= i; j++){
+			if(a[i][j] == 1){
+				ke[i].push_back(j);
+				ke[j].push_back(i);
+			}		
+		}
+	}
+	for(int i = 1; i <= n; i++){
+		for(auto it : ke[i]){
+			cout << it << " ";
+		}
+		cout << endl;
+	}
+}
