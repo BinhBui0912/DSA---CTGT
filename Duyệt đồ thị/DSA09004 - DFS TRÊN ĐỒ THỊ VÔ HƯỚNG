@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+vector<int> ke[1001];
+bool visited[1001];
+int v, e, u;
+
+void inp(){
+  for(int i = 0; i < 1001; i++){
+		ke[i].clear();
+	}
+	cin >> v >> e >> u;
+	for(int i = 1; i <= e; i++){
+		int x, y; cin >> x >> y;
+		ke[x].push_back(y);
+		ke[y].push_back(x);
+	}
+	memset(visited, false, sizeof(visited));
+}
+
+void dfs(int u){
+	cout << u << " ";
+	visited[u] = true;
+	for(int v : ke[u]){
+		if(!visited[v])
+			dfs(v);
+	}
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		dfs(u);
+		cout << endl;
+	}
+}
