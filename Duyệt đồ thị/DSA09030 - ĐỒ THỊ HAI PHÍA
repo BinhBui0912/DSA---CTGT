@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+using ll = long long;
+int n, m;
+vector<int> ke[1001];
+bool visited[1001];
+int parent[1001];
+int color[1001];
+
+void inp(){
+	for(int i = 0; i < 1001; i++) ke[i].clear();
+	cin >> n >> m;
+	for(int i = 1; i <= m; i++){
+		int x, y;
+		cin >> x >> y;
+		ke[x].push_back(y);
+		ke[y].push_back(x);
+	}
+	memset(color, 0, sizeof(color));
+}
+
+bool dfs(int u, int par){
+	color[u] = 3 - color[par];
+	for(int v : ke[u]){
+		if(color[v] == 0){
+			if(!dfs(v,u)) return false;
+		}
+		else if(color[v] == color[u]){
+			return false;
+		}
+	}
+	return true;
+}
+
+bool bfs(int u){
+	queue<int> q;
+	q.push(u);
+	color[u] = 1;
+	while(!q.empty()){
+		int v = q.front();
+		q.pop();
+		for(int x : ke[v]){
+			if(!color[x]){
+				color[x] = 3 - color[v];
+				q.push(x);
+			}
+			else if(color[x] == color[v]){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		bool ok = true;
+		color[0] = 1;
+		for(int i = 1; i <= n; i++){
+			if(!color[i] && !bfs(i)){
+				ok = false; break;
+			}
+		}
+		if(ok) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+}
