@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+using ll = long long;
+int n, m;
+vector<int> ke[1001];
+bool visited[1001];
+int parent[1001];
+
+void inp(){
+	for(int i = 0; i < 1001; i++) ke[i].clear();
+	cin >> n >> m;
+	for(int i = 1; i <= m; i++){
+		int x, y;
+		cin >> x >> y;
+		ke[x].push_back(y);
+		ke[y].push_back(x);
+	}
+	memset(visited, false, sizeof(visited));
+	memset(parent, 0, sizeof(parent));
+}
+
+bool dfs(int u, int par){
+	visited[u] = true;
+	for(int v : ke[u]){
+		if(!visited[v]){
+			if(dfs(v, u)) return true;
+		}
+		else if(v != par){
+			return true;
+		}
+	}
+	return false;
+}
+
+bool bfs(int u){
+	queue<int> q;
+	q.push(u);
+	visited[u] = true;
+	while(!q.empty()){
+		int v = q.front();
+		q.pop();
+		for(int x : ke[v]){
+			if(!visited[x]){
+				visited[x] = true;
+				q.push(x);
+				parent[x] = v;
+			}
+			else if(x != parent[v]){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		inp();
+		bool ok = false;
+		for(int i = 1; i <= n; i++){
+			if(!visited[i] && dfs(i, 0)){
+				ok = true; break;
+			}
+		}
+		if(ok) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+}
