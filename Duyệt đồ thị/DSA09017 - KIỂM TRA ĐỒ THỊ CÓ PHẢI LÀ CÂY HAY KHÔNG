@@ -38,8 +38,7 @@ int main(){
 		inp();
 		bool ok = true;
 		for(int i = 1; i <= n; i++){
-			memset(visited, false, sizeof(visited));
-			if(dfs(i, 0)){
+			if(!visited[i] && dfs(i, 0)){
 				ok = false; break;
 			}
 		}
