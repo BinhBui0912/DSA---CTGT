@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+int n, m;
+int sz[1001];
+int parent[1001];
+
+void ktao(){
+	for(int i = 1; i <= n; i++){
+		parent[i] = i;
+		sz[i] = 1;
+	}
+}
+
+int find(int u){
+	if(u == parent[u]) return u;
+	else return parent[u] = find(parent[u]);
+}
+
+bool Union(int a, int b){
+	a = find(a);
+	b = find(b);
+	if(a == b) return false;
+	if(sz[a] > sz[b]){
+		parent[b] = a;
+		sz[a] += sz[b];
+	}
+	else{
+		parent[a] = b;
+		sz[b] += sz[a];
+	}
+	return true;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		cin >> n >> m;
+		memset(parent, 0, sizeof(parent));
+		memset(sz, 0, sizeof(sz));
+		ktao();
+		bool ok = false;
+		for(int i = 1; i <= m; i++){
+			int x, y; cin >> x >> y;
+			if(Union(x, y) == false) ok = true;
+		}
+		if(ok) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+}
