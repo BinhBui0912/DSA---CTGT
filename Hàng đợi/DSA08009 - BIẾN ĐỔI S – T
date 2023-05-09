@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int bfs(int s, int t){
+	set<int> se;
+	queue<pair<int, int>> q;
+	q.push({s, 0});
+	while(!q.empty()){
+		pair<int, int> top = q.front();
+		q.pop();
+		int x = top.first;
+		if(x == t) return top.second;
+		if(x - 1 == t || x * 2 == t) return top.second + 1;
+		if(x > 1 && !se.count(x - 1)){
+			q.push({x - 1, top.second + 1});
+			se.insert(x - 1);
+		}
+		if(x < t && !se.count(x * 2)){
+			q.push({x * 2, top.second + 1});
+			se.insert(x * 2);
+		}
+	}
+	return 0;
+}
+
+int main(){
+	int test; cin >> test;
+	while(test--){
+		int s, t;
+		cin >> s >> t;
+		cout << bfs(s, t) << endl;
+	}
+}
