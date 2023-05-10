@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+bool nt[10001];
+
+void sang(){
+	memset(nt, true, sizeof(nt));
+	nt[0] = nt[1] = true;
+	for(int i = 2; i <= sqrt(10001); i++){
+		if(nt[i]){
+			for(int j = i * i; j < 10001; j += i)
+				nt[j] = false;
+		}
+	}
+} 
+
+int bfs(int s, int t){
+	queue<pair<int, int>> q;
+	bool used[10001];
+	memset(used, false, sizeof(used));
+	q.push({s, 0});
+	used[s] = true;
+	while(1){
+		pair<int, int> top = q.front(); 
+		q.pop();
+		int num = top.first;
+		int x = top.first;
+		if(num == t) return top.second;
+		vector<int> digit;
+		while(x > 0){
+			digit.push_back(x % 10);
+			x /= 10;
+		}
+		reverse(digit.begin(), digit.end());
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j <= 9; j++){
+				if(i == 0 && j == 0) continue;
+				if(digit[i] != j){
+					int new_num = 0;
+					for(int k = 0; k < 4; k++){
+						if(i != k) new_num = new_num * 10 + digit[k];
+						else new_num = new_num * 10 + j;
+					}
+					if(nt[new_num] && !used[new_num]){
+						q.push({new_num, top.second + 1});
+						used[new_num] = true;
+					}
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+int main(){
+	int test; cin >> test;
+	sang();
+	while(test--){
+		int s, t;
+		cin >> s >> t;
+		cout << bfs(s, t) << endl;
+	}
+}
