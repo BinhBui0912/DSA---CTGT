@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+vector<ll> res;
+ll a[101];
+
+void solve(){
+	queue<string> q;
+	q.push("9");
+	while(1){
+		string s = q.front();
+		q.pop();
+		if(s.size() == 10) break;
+		res.push_back(stoll(s));
+		q.push(s + "0");
+		q.push(s + "9");
+	}
+	for(int i = 1; i <= 100; i++){
+			for(auto x : res){
+				if(x % i == 0){
+					a[i] = x;
+					break;
+				}
+			}
+		}
+}
+
+int main(){
+	solve();
+	int t; cin >> t;
+	while(t--){
+		int n; cin >> n;
+		cout << a[n] << endl;
+	}
+}
