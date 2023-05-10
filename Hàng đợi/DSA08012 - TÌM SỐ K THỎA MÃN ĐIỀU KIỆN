@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+vector<int> v;
+
+void solve(){
+	queue<int> q;
+	for(int i = 1; i <= 5; i++){
+		q.push(i);
+	}
+	while(1){
+		int t = q.front();
+		q.pop();
+		if(t > 100000) break;
+		v.push_back(t);
+		int tmp = t;
+		int used[6] = {0};
+		while(tmp > 0){
+			used[tmp % 10] = 1;
+			tmp /= 10;
+		}
+		for(int i = 0; i <= 5; i++){
+			if(!used[i]){
+				q.push(t * 10 + i);
+			}
+		}
+	}
+}
+
+
+int main(){
+	int t; cin >> t;
+	solve();
+	while(t--){
+		int l, r;
+		cin >> l >> r;
+		int cnt = 0;
+		for(int i = 0; i < v.size(); i++){
+			if(v[i] >= l && v[i] <= r)
+				cnt++;
+			else if(v[i] > r) break;
+		}
+		cout << cnt << endl;
+	}
+}
