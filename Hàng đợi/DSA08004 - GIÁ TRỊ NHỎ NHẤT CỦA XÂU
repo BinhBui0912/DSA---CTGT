@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		int k; cin >> k;
+		string s; cin >> s;
+		map<char, int> mp;
+		for(char x : s) mp[x]++;
+		priority_queue<int> q;
+		for(auto x : mp){
+			q.push(x.second);
+		}
+		while(k--){
+			int x = q.top();
+			q.pop();
+			x--;
+			q.push(max(0, x));
+		}
+		ll ans = 0;
+		while(!q.empty()){
+			ans += 1ll * q.top() * q.top();
+			q.pop();
+		}
+		cout << ans << endl;
+	}
+}
