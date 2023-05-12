@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+void solve(string s){
+	stack<char> st;
+	for(char x : s){
+		if(x != ']'){
+			st.push(x);
+		}
+		else{
+			string tmp = "";
+			while(st.size() && st.top() != '['){
+				tmp = st.top() + tmp;
+				st.pop();
+			}
+			st.pop();
+			string number = "";
+			while(st.size() && isdigit(st.top())){
+				number = st.top() + number;
+				st.pop();
+			}
+			int num = 1;
+			if(number.size()) num = stoi(number);
+			string res = "";
+			for(int i = 1; i <= num; i++){
+				res = res + tmp;
+			}
+			for(int i = 0; i < res.size(); i++){
+				st.push(res[i]);
+			}
+		}
+	}
+	string ans = "";
+	while(!st.empty()){
+		ans = st.top() + ans;
+		st.pop();
+	}
+	cout << ans << endl;
+} 
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		string s; cin >> s;
+		solve(s);
+	}
+} 
