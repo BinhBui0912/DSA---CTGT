@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	string s; 
+	int x;
+	stack<int> st1, st2;
+	while(cin >> s){
+		if(s == "push"){
+			cin >> x;
+			st1.push(x);
+		}
+		else if(s == "pop" && !st1.empty()){
+			st1.pop();
+		}
+		else{
+			if(st1.empty()){
+				cout << "empty" << endl;
+			}
+			else{
+				while(!st1.empty()){
+					int tmp = st1.top();
+					st2.push(tmp);
+					st1.pop();
+				}
+				while(!st2.empty()){
+					int tmp = st2.top();
+					st1.push(tmp);
+					st2.pop();
+					cout << tmp << " ";
+				}
+				cout << endl;
+			}
+		}
+	}
+}
+
