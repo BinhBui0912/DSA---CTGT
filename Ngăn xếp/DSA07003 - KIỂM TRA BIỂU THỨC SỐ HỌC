@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+bool check(string s){
+	stack<char> st;
+	for(char x : s){
+		if(x == ')'){
+			int ok = 1;
+			while(st.top() != '('){
+				char c = st.top();
+				if(c == '+' || c == '-' || c == '*' || c == '/') ok = 0;
+				st.pop();
+			}
+			if(ok == 1) return true;
+			st.pop(); 
+		}
+		else{
+			st.push(x);
+		}
+	}
+	return false;
+}
+
+int main(){
+	int t; cin >> t;
+	cin.ignore();
+	while(t--){
+		string s; 
+		getline(cin, s);
+		if(check(s))
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+	}
+}
