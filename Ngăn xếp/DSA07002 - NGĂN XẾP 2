@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	string s;
+	int x;
+	stack<int> st;
+	int n; cin >> n;
+	while(n--){
+		cin >> s;
+		if(s == "PUSH"){
+			cin >> x;
+			st.push(x);
+		}
+		else if(s == "PRINT"){
+			if(st.empty())
+				cout << "NONE" << endl;
+			else 
+				cout << st.top() << endl;
+		}
+		else{
+			if(!st.empty())
+				st.pop();
+		}
+	} 
+}
