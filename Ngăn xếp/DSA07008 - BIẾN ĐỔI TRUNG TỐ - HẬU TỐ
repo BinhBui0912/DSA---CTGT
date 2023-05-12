@@ -42,3 +42,11 @@ void solve(string s){
 	}
 	cout << res << endl;
 }
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		string s; cin >> s;
+		solve(s);
+	}
+}
