@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int pre(char x){
+	if(x == '(') return 0;
+	if(x == '+' || x == '-') return 1;
+	if(x == '*' || x == '/') return 2;
+	if(x == '^') return 3;
+}
+
+void solve(string s){
+	stack<char> st;
+	string res = "";
+	for(int i = 0; i < s.size(); i++){
+		if(isalpha(s[i])){
+			res += s[i];
+		}
+		else if(s[i] == '('){
+			st.push(s[i]);
+		}
+		else if(s[i] == ')'){
+			while(!st.empty() && st.top() != '('){
+				res += st.top();
+				st.pop();
+			}
+			st.pop();
+		}
+		else{
+			while(!st.empty() && pre(st.top()) >= pre(s[i])){
+				res += st.top();
+				st.pop();
+			}
+			st.push(s[i]);
+		}
+	}
+	while(!st.empty()){
+		res += st.top();
+		st.pop();
+	}
+	cout << res << endl;
+}
