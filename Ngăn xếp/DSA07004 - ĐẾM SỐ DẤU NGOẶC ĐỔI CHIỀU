@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		string s; cin >> s;
+		stack<char> st;
+		for(char x : s){
+			if(x == ')' && !st.empty()){
+				if(st.top() == '(')
+					st.pop();
+				else
+					st.push(x);
+			}
+			else
+				st.push(x);
+		}
+		int k = st.size(), n = 0;
+		while(!st.empty() && st.top() == '('){
+			st.pop();
+			n++;
+		}
+		cout << (k / 2 + n % 2) << endl;
+	}
+} 
