@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+const int mod = 123456789; 
+
+ll binpow(ll a, ll b){
+	if(b == 0) return 1;
+	ll x = binpow(a, b/2);
+	if(b % 2 == 1) return (x % mod * x % mod * a) % mod;
+	else return (x % mod * x % mod) % mod;
+} 
+
+int main(){
+	int t; cin >> t;
+	while(t--){
+		ll n; cin >> n;
+		cout << binpow(2, n - 1) % mod << endl; 
+	}
+} 
